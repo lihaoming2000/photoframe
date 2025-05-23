@@ -11,6 +11,7 @@
 ### 功能特性
 
 - 📸 **相册选择**: 浏览并选择iPad上的任意相册进行播放
+- 🌆 **回忆播放**: 支持播放iOS系统自动生成的回忆（Memories）
 - 🎞️ **自动播放**: 照片自动滚动播放，带有优雅的淡入淡出效果
 - 🔒 **屏幕常亮**: 应用运行时自动保持屏幕不锁定
 - 🕐 **时间显示**: 实时显示当前时间和日期
@@ -49,9 +50,10 @@
    - 应用会请求照片库访问权限
    - 应用会请求位置访问权限（用于显示天气）
 
-2. **选择相册**
-   - 启动后会显示相册选择界面
-   - 点击任意相册开始播放
+2. **选择内容**
+   - 启动后会显示内容选择界面
+   - 可以选择“相册”或“回忆”标签页
+   - 点击任意相册或回忆开始播放
 
 3. **播放控制**
    - 照片每5秒自动切换
@@ -69,6 +71,7 @@ PhotoFrame/
 │   ├── ContentView.swift          # 主视图
 │   ├── PhotoView.swift           # 照片显示组件
 │   ├── AlbumPickerView.swift     # 相册选择视图
+│   ├── MemoryThumbnailView.swift # 回忆缩略图组件
 │   ├── WeatherView.swift         # 天气显示组件
 │   ├── PhotoManager.swift        # 照片管理器
 │   ├── WeatherManager.swift      # 天气管理器
@@ -140,6 +143,7 @@ An elegant photo album player designed specifically for iPad, featuring automati
 ### Features
 
 - 📸 **Album Selection**: Browse and select any album on your iPad for playback
+- 🌆 **Memories Playback**: Support playing iOS auto-generated Memories
 - 🎞️ **Auto Playback**: Photos automatically scroll with elegant fade transitions
 - 🔒 **Screen Always On**: Automatically keeps screen unlocked while app is running
 - 🕐 **Time Display**: Real-time display of current time and date
@@ -178,9 +182,10 @@ An elegant photo album player designed specifically for iPad, featuring automati
    - App will request photo library access permission
    - App will request location access permission (for weather display)
 
-2. **Select Album**
-   - Album selection interface appears on launch
-   - Tap any album to start playback
+2. **Select Content**
+   - Content selection interface appears on launch
+   - Choose between "Albums" or "Memories" tabs
+   - Tap any album or memory to start playback
 
 3. **Playback Control**
    - Photos automatically change every 5 seconds
@@ -198,6 +203,7 @@ PhotoFrame/
 │   ├── ContentView.swift          # Main view
 │   ├── PhotoView.swift           # Photo display component
 │   ├── AlbumPickerView.swift     # Album picker view
+│   ├── MemoryThumbnailView.swift # Memory thumbnail component
 │   ├── WeatherView.swift         # Weather display component
 │   ├── PhotoManager.swift        # Photo manager
 │   ├── WeatherManager.swift      # Weather manager

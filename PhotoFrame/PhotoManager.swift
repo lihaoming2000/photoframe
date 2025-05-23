@@ -3,6 +3,7 @@ import Photos
 
 class PhotoManager: ObservableObject {
     @Published var albums: [PHAssetCollection] = []
+    @Published var memories: [PHAssetCollection] = []
     @Published var photos: [PHAsset] = []
     @Published var authorizationStatus: PHAuthorizationStatus = .notDetermined
     
@@ -16,6 +17,7 @@ class PhotoManager: ObservableObject {
                 self?.authorizationStatus = status
                 if status == .authorized {
                     self?.loadAlbums()
+                    self?.loadMemories()
                 }
             }
         }
@@ -25,6 +27,7 @@ class PhotoManager: ObservableObject {
         authorizationStatus = PHPhotoLibrary.authorizationStatus()
         if authorizationStatus == .authorized {
             loadAlbums()
+            loadMemories()
         }
     }
     
@@ -69,14 +72,43 @@ class PhotoManager: ObservableObject {
         }
     }
     
-    func loadPhotos(from album: PHAssetCollection) {
+    func loadMemories() {
+        memories.removeAll()
+        
+        // 获取 Memories (时刻)
+        let moments = PHAssetCollection.fetchAssetCollections(
+            with: .moment,
+            subtype: .any,
+            options: nil
+        )
+        
+        moments.enumerateObjects { [weak self] (memory, _, _) in
+            // 检查是否包含照片
+            let fetchOptions = PHFetchOptions()
+            fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+            let assetCount = PHAsset.fetchAssets(in: memory, options: fetchOptions).count
+            
+            if assetCount > 0 {
+                self?.memories.append(memory)
+            }
+        }
+        
+        // 按创建日期排序（最新的在前）
+        memories.sort { memory1, memory2 in
+            let date1 = memory1.startDate ?? Date.distantPast
+            let date2 = memory2.startDate ?? Date.distantPast
+            return date1 > date2
+        }
+    }
+    
+    func loadPhotos(from collection: PHAssetCollection) {
         photos.removeAll()
         
         let fetchOptions = PHFetchOptions()
         fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
-        let assets = PHAsset.fetchAssets(in: album, options: fetchOptions)
+        let assets = PHAsset.fetchAssets(in: collection, options: fetchOptions)
         
         assets.enumerateObjects { [weak self] (asset, _, _) in
             self?.photos.append(asset)

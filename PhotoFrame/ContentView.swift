@@ -53,20 +53,34 @@ struct ContentView: View {
                     Spacer()
                 }
                 
-                // 控制按钮
+                // 控制按钮和信息
                 VStack {
                     Spacer()
                     HStack {
-                        Button(action: {
-                            stopSlideshow()
-                            showAlbumPicker = true
-                        }) {
-                            Image(systemName: "photo.on.rectangle")
-                                .font(.title)
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.black.opacity(0.5))
-                                .clipShape(Circle())
+                        VStack(alignment: .leading, spacing: 5) {
+                            // 返回按钮
+                            Button(action: {
+                                stopSlideshow()
+                                showAlbumPicker = true
+                            }) {
+                                Image(systemName: "photo.on.rectangle")
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.black.opacity(0.5))
+                                    .clipShape(Circle())
+                            }
+                            
+                            // 显示当前播放的相册/回忆名称
+                            if let album = selectedAlbum {
+                                Text(album.localizedTitle ?? "未命名")
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 5)
+                                    .background(Color.black.opacity(0.5))
+                                    .cornerRadius(15)
+                            }
                         }
                         .padding()
                         Spacer()
