@@ -1,267 +1,139 @@
-# PhotoFrame - iPad相册播放应用 / iPad Photo Album Player
+# EasyFrame2025 - Smart Photo Frame for iPad
+# EasyFrame2025 - iPad 智能相框
 
-[中文](#中文) | [English](#english)
-
----
-
-## 中文
-
-一个专为iPad设计的优雅相册播放应用，支持自动播放、天气显示和时间显示功能。
-
-### 功能特性
-
-- 📸 **相册选择**: 浏览并选择iPad上的任意相册进行播放
-- 🌆 **回忆播放**: 支持播放iOS系统自动生成的回忆（Memories）
-- 🎞️ **自动播放**: 照片自动滚动播放，带有优雅的淡入淡出效果
-- 🔒 **屏幕常亮**: 应用运行时自动保持屏幕不锁定
-- 🕐 **时间显示**: 实时显示当前时间和日期
-- 🌤️ **天气信息**: 显示当前位置的天气状况
-- 🎨 **全屏显示**: 照片以全屏模式展示，带来沉浸式体验
-
-### 开发环境要求
-
-- macOS 12.0 或更高版本
-- Xcode 14.0 或更高版本
-- iOS 16.0 或更高版本的iPad
-
-### 项目设置
-
-1. **克隆仓库**
-   ```bash
-   git clone https://github.com/lihaoming2000/photoframe.git
-   cd photoframe
-   ```
-
-2. **打开项目**
-   - 使用Xcode打开 `PhotoFrame.xcodeproj`
-
-3. **配置开发者账号**
-   - 在Xcode中选择你的开发团队
-   - 修改Bundle Identifier（建议使用: `com.yourname.photoframe`）
-
-4. **配置权限**
-   项目已经配置了以下权限（在Info.plist中）：
-   - 照片库访问权限
-   - 位置访问权限（用于天气信息）
-
-### 使用说明
-
-1. **首次启动**
-   - 应用会请求照片库访问权限
-   - 应用会请求位置访问权限（用于显示天气）
-
-2. **选择内容**
-   - 启动后会显示内容选择界面
-   - 可以选择“相册”或“回忆”标签页
-   - 点击任意相册或回忆开始播放
-
-3. **播放控制**
-   - 照片每5秒自动切换
-   - 点击左下角的相册图标可重新选择相册
-
-4. **信息显示**
-   - 右上角显示当前时间、日期和天气信息
-
-### 项目结构
-
-```
-PhotoFrame/
-├── PhotoFrame/
-│   ├── PhotoFrameApp.swift        # 应用入口
-│   ├── ContentView.swift          # 主视图
-│   ├── PhotoView.swift           # 照片显示组件
-│   ├── AlbumPickerView.swift     # 相册选择视图
-│   ├── MemoryThumbnailView.swift # 回忆缩略图组件
-│   ├── WeatherView.swift         # 天气显示组件
-│   ├── PhotoManager.swift        # 照片管理器
-│   ├── WeatherManager.swift      # 天气管理器
-│   └── Info.plist               # 应用配置文件
-└── PhotoFrame.xcodeproj/        # Xcode项目文件
-```
-
-### 自定义设置
-
-你可以在 `ContentView.swift` 中修改以下设置：
-
-- `slideInterval`: 照片切换间隔（默认5秒）
-- `transitionDuration`: 淡入淡出动画时长（默认1秒）
-
-### 天气数据
-
-当前版本使用模拟天气数据。如需真实天气数据，可以：
-
-1. **使用OpenWeatherMap API（免费）**
-   - 注册获取API密钥：https://openweathermap.org
-   - 在`WeatherManager.swift`中配置API密钥
-
-2. **使用Apple WeatherKit（需要付费开发者账号）**
-   - 在Apple Developer中启用WeatherKit
-   - 在项目中添加WeatherKit capability
-
-### 部署选项
-
-#### 个人使用（推荐）
-1. 连接你的iPad到Mac
-2. 在Xcode中选择你的iPad作为运行目标
-3. 点击运行按钮安装到你的设备
-
-#### App Store发布
-如果你想发布到App Store：
-1. 需要Apple Developer Program会员资格（$99/年）
-2. 在App Store Connect创建应用
-3. 提交审核
-
-考虑到这是个人使用的应用，建议使用个人开发者证书直接安装到你的iPad上，这样可以免费使用7天，之后需要重新安装。如果你有Apple Developer账号，可以安装使用一年。
-
-### 技术栈
-
-- **SwiftUI**: 用户界面
-- **PhotoKit**: 照片库访问
-- **CoreLocation**: 位置服务
-- **URLSession**: 网络请求（天气API）
-
-### 注意事项
-
-- 确保iPad有足够的存储空间来缓存照片
-- 首次加载大相册可能需要一些时间
-- 天气信息需要网络连接（使用真实API时）
-
-### 许可证
-
-本项目仅供个人使用。
-
-### 联系方式
-
-如有问题，请在GitHub上提交Issue。
+[English](#english) | [中文](#chinese)
 
 ---
 
+<a name="english"></a>
 ## English
 
-An elegant photo album player designed specifically for iPad, featuring automatic playback, weather display, and time display.
+### Overview
+EasyFrame2025 transforms your iPad into an elegant digital photo frame, displaying your cherished memories with style. Perfect for home, office, or any space that needs a touch of personalization.
 
 ### Features
+- 📸 **Album Selection**: Browse and select any album from your iPad
+- 🎞️ **Auto Slideshow**: Photos automatically transition with elegant fade effects
+- 🔒 **Screen Always On**: Keeps your screen active during playback
+- 🕐 **Time Display**: Shows current time and date
+- 🌤️ **Weather Information**: Displays local weather conditions
+- 🎨 **Full Screen Mode**: Immersive photo viewing experience
 
-- 📸 **Album Selection**: Browse and select any album on your iPad for playback
-- 🌆 **Memories Playback**: Support playing iOS auto-generated Memories
-- 🎞️ **Auto Playback**: Photos automatically scroll with elegant fade transitions
-- 🔒 **Screen Always On**: Automatically keeps screen unlocked while app is running
-- 🕐 **Time Display**: Real-time display of current time and date
-- 🌤️ **Weather Info**: Shows current location weather conditions
-- 🎨 **Fullscreen Display**: Photos displayed in fullscreen mode for immersive experience
-
-### Development Requirements
-
-- macOS 12.0 or later
-- Xcode 14.0 or later
+### Requirements
 - iPad with iOS 16.0 or later
+- Photos in your iPad's photo library
+- Location permission (for weather display)
 
-### Project Setup
+### Installation
+The app is available on the App Store (pending review):
+- Search for "EasyFrame2025" on App Store
+- Free download, no in-app purchases
+- No ads, no data collection
 
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/lihaoming2000/photoframe.git
-   cd photoframe
-   ```
+### Usage
+1. Launch EasyFrame2025
+2. Grant permissions for photos and location (optional for weather)
+3. Select an album to display
+4. Place your iPad on a stand and enjoy!
 
-2. **Open Project**
-   - Open `PhotoFrame.xcodeproj` with Xcode
+### Privacy
+- All photos remain on your device
+- Location is only used for weather display
+- No data collection or tracking
+- No user accounts required
 
-3. **Configure Developer Account**
-   - Select your development team in Xcode
-   - Modify Bundle Identifier (suggested: `com.yourname.photoframe`)
+### Development
+This project is built with:
+- SwiftUI
+- PhotoKit Framework
+- CoreLocation
+- Weather data from wttr.in API
 
-4. **Permissions Configuration**
-   The following permissions are already configured in Info.plist:
-   - Photo Library access
-   - Location access (for weather information)
-
-### Usage Instructions
-
-1. **First Launch**
-   - App will request photo library access permission
-   - App will request location access permission (for weather display)
-
-2. **Select Content**
-   - Content selection interface appears on launch
-   - Choose between "Albums" or "Memories" tabs
-   - Tap any album or memory to start playback
-
-3. **Playback Control**
-   - Photos automatically change every 5 seconds
-   - Tap the album icon in bottom-left to reselect album
-
-4. **Information Display**
-   - Current time, date, and weather info displayed in top-right corner
-
-### Project Structure
-
-```
-PhotoFrame/
-├── PhotoFrame/
-│   ├── PhotoFrameApp.swift        # App entry point
-│   ├── ContentView.swift          # Main view
-│   ├── PhotoView.swift           # Photo display component
-│   ├── AlbumPickerView.swift     # Album picker view
-│   ├── MemoryThumbnailView.swift # Memory thumbnail component
-│   ├── WeatherView.swift         # Weather display component
-│   ├── PhotoManager.swift        # Photo manager
-│   ├── WeatherManager.swift      # Weather manager
-│   └── Info.plist               # App configuration
-└── PhotoFrame.xcodeproj/        # Xcode project file
-```
-
-### Custom Settings
-
-You can modify the following settings in `ContentView.swift`:
-
-- `slideInterval`: Photo transition interval (default: 5 seconds)
-- `transitionDuration`: Fade animation duration (default: 1 second)
-
-### Weather Data
-
-Current version uses mock weather data. For real weather data:
-
-1. **Use OpenWeatherMap API (Free)**
-   - Register for API key: https://openweathermap.org
-   - Configure API key in `WeatherManager.swift`
-
-2. **Use Apple WeatherKit (Requires paid developer account)**
-   - Enable WeatherKit in Apple Developer
-   - Add WeatherKit capability to project
-
-### Deployment Options
-
-#### Personal Use (Recommended)
-1. Connect your iPad to Mac
-2. Select your iPad as run target in Xcode
-3. Click run button to install on your device
-
-#### App Store Release
-To publish on App Store:
-1. Requires Apple Developer Program membership ($99/year)
-2. Create app in App Store Connect
-3. Submit for review
-
-Since this is for personal use, we recommend using a personal developer certificate to install directly on your iPad. This allows free use for 7 days, after which you'll need to reinstall. With an Apple Developer account, you can use it for one year.
-
-### Tech Stack
-
-- **SwiftUI**: User interface
-- **PhotoKit**: Photo library access
-- **CoreLocation**: Location services
-- **URLSession**: Network requests (weather API)
-
-### Notes
-
-- Ensure iPad has sufficient storage for photo caching
-- First load of large albums may take some time
-- Weather info requires internet connection (when using real API)
+### Support
+For issues or suggestions:
+- Email: lihaoming2023@hotmail.com
+- GitHub Issues: [Create an issue](https://github.com/lihaoming2000/photoframe/issues)
 
 ### License
+© 2025 Haoming Li. All rights reserved.
 
-This project is for personal use only.
+---
 
-### Contact
+<a name="chinese"></a>
+## 中文
 
-For issues, please submit on GitHub.
+### 概述
+EasyFrame2025 将您的 iPad 变成优雅的数码相框，以精美的方式展示您的珍贵回忆。适合家庭、办公室或任何需要个性化装饰的空间。
+
+### 功能特点
+- 📸 **相册选择**：浏览并选择 iPad 上的任意相册
+- 🎞️ **自动播放**：照片自动切换，带有优雅的淡入淡出效果
+- 🔒 **屏幕常亮**：播放期间保持屏幕始终点亮
+- 🕐 **时间显示**：显示当前时间和日期
+- 🌤️ **天气信息**：显示本地天气状况
+- 🎨 **全屏模式**：沉浸式照片浏览体验
+
+### 系统要求
+- iPad 设备，iOS 16.0 或更高版本
+- iPad 照片库中的照片
+- 位置权限（用于天气显示，可选）
+
+### 安装方式
+应用已提交至 App Store（审核中）：
+- 在 App Store 搜索"EasyFrame2025"
+- 免费下载，无内购
+- 无广告，不收集数据
+
+### 使用方法
+1. 启动 EasyFrame2025
+2. 授予照片和位置权限（位置权限可选，用于天气）
+3. 选择要展示的相册
+4. 将 iPad 放在支架上，尽情欣赏！
+
+### 隐私保护
+- 所有照片保留在您的设备上
+- 位置信息仅用于显示天气
+- 不收集或跟踪任何数据
+- 无需用户账户
+
+### 技术实现
+本项目使用以下技术构建：
+- SwiftUI
+- PhotoKit 框架
+- CoreLocation
+- wttr.in API 提供天气数据
+
+### 技术支持
+如有问题或建议：
+- 邮箱：lihaoming2023@hotmail.com
+- GitHub Issues：[提交问题](https://github.com/lihaoming2000/photoframe/issues)
+
+### 版权信息
+© 2025 李浩铭。保留所有权利。
+
+---
+
+## Screenshots / 截图
+
+### Album Selection / 相册选择
+<img src="screenshots/album_selection.png" width="400" alt="Album Selection">
+
+### Photo Display / 照片展示
+<img src="screenshots/photo_display.png" width="400" alt="Photo Display">
+
+### Weather and Time / 天气和时间
+<img src="screenshots/weather_time.png" width="400" alt="Weather and Time">
+
+---
+
+## App Store Status / App Store 状态
+
+🟡 **Status**: Under Review / 审核中
+
+📱 **Version**: 1.0 (Build 3)
+
+📅 **Submitted**: May 25, 2025
+
+---
+
+Made with ❤️ by Haoming Li
